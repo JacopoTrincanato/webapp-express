@@ -10,6 +10,9 @@ const moviesRouter = require('./routes/movies.js');
 //importo notFound
 const notFound = require('./middlewares/notFound.js');
 
+//importo internalError
+const internalError = require('./middlewares/internalError.js');
+
 //creo una variabile per l'HOST
 const HOST = process.env.HOST;
 
@@ -24,5 +27,8 @@ app.listen(PORT, () => {
 //uso le rotte
 app.use('/movies', moviesRouter);
 
-//gestisco l' errore 404
+//gestisco l'errore 404
 app.use(notFound);
+
+//gestisco l'errore 500
+app.use(internalError);
