@@ -8,10 +8,10 @@ const router = express.Router();
 const moviesController = require('../controllers/moviesController.js');
 
 //utilizzo index
-router.get('/movies', moviesController.index);
+router.get('/', moviesController.index);
 
 //utilizzo show
-router.get('/movies/:id', moviesController.show);
+router.get('/:id', moviesController.show);
 
 //esporto le rotte
 module.exports = router;
