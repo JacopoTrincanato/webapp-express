@@ -11,7 +11,6 @@ const HOST = process.env.HOST;
 const PORT = process.env.PORT;
 
 //importo la connessione
-const movieConnection = require('./db/moviesConnection.js');
 const connection = require('./db/moviesConnection.js');
 
 //faccio girare il server
@@ -20,7 +19,7 @@ app.listen(PORT, () => {
 });
 
 //creo una rotta index
-app.get('/', (req, res) => {
+app.get('/movies', (req, res) => {
 
     //creo una costante per la query
     const sql = 'SELECT * FROM movies';
@@ -39,7 +38,7 @@ app.get('/', (req, res) => {
 });
 
 //creo una rotta show
-app.get('/:id', (req, res) => {
+app.get('/movies/:id', (req, res) => {
 
     //creo una costante per la query
     const sql = 'SELECT * FROM movies WHERE id = ?';
