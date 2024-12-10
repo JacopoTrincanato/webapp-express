@@ -1,6 +1,7 @@
 //creo un errore 404
-const notFoundMiddleware = (req, res, next) => {
+function notFoundMiddleware(req, res, next) {
     res.status(404).json({ error: 'notFound' });
 };
 
-module.exports = notFoundMiddleware
+//esporto notFoundMiddleware
+module.exports = notFoundMiddleware;
