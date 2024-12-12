@@ -4,6 +4,9 @@ const express = require('express');
 //creo una costante app per utilizzare express
 const app = express();
 
+//creo una variabile che richiama cors
+const cors = require('cors');
+
 //importo le rotte
 const moviesRouter = require('./routes/movies.js');
 
@@ -23,6 +26,9 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running at ${HOST}:${PORT}`);
 });
+
+// Uso cors per permettere richieste da tutti gli origin
+app.use(cors());
 
 //uso le rotte
 app.use('/movies', moviesRouter);
