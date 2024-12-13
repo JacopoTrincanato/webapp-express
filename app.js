@@ -27,6 +27,9 @@ app.listen(PORT, () => {
     console.log(`Server is running at ${HOST}:${PORT}`);
 });
 
+//utilizzo il body parser
+app.use(express.json());
+
 // Uso cors per permettere richieste da tutti gli origin
 app.use(cors());
 
