@@ -55,5 +55,16 @@ const show = (req, res) => {
     });
 };
 
+//creo una rotta storeReview
+const storeReview = (req, res) => {
+    //recupero l'id e lo salvo in una costante movie_id
+    //recupero le chiavi che mi servono dal body
+    //creo una data in una costante now
+    //creo una costante reviewDate per accedere all'anno, al mese e al giorno
+    //creo una costante per la query
+    //uso la connection e restituisco un errore 500 nel caso di insuccesso
+    //altrimenti ritorno uno status 201 con success
+}
+
 //esporto index e show
-module.exports = { index, show };
+module.exports = { index, show, storeReview };
