@@ -67,22 +67,23 @@ const storeReview = (req, res) => {
     //creo una data in una costante now
     const now = new Date();
 
-    //creo una costante reviewDate per accedere all'anno, al mese e al giorno
-    const reviewDate = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()}`;
+    //creo una costante updated_at per accedere all'anno, al mese e al giorno
+    const updated_at = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()}`;
 
     //creo una costante per la query
-    const sql = 'INSERT INTO reviews SET name = ?, vote = ?, text = ?'
+    const newReviewSql = 'INSERT INTO reviews SET movie_id = ?, name = ?, vote = ?, text = ?, updated_at = ?'
 
     //uso la connection e 
-    connection.query(sql, [movie_id, name, vote, text, reviewDate], (err, results) => {
+    connection.query(newReviewSql, [movie_id, name, vote, text, updated_at], (err, results) => {
 
         //restituisco un errore 500 nel caso di insuccesso
         if (err) return res.status(500).json({ error: err });
-    })
 
-    //altrimenti ritorno uno status 201 con success
-    res.status(201).json({ success: true });
-}
+        //altrimenti ritorno uno status 201 con success
+        res.status(201).json({ success: true });
+    });
+
+};
 
 //esporto index e show
 module.exports = { index, show, storeReview };
