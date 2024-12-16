@@ -64,6 +64,17 @@ const storeReview = (req, res) => {
     //recupero le chiavi che mi servono dal body
     const { name, vote, text } = req.body;
 
+    // Controllo che i campi siano validi
+    if (name.length < 2) {
+        return res.status(400).json({ error: 'Il nome deve avere almeno 2 caratteri!' });
+    }
+    if (text.length < 3) {
+        return res.status(400).json({ error: 'La recensione deve avere almeno 3 caratteri!' });
+    }
+    if (vote === 0) {
+        return res.status(400).json({ error: 'Il voto deve essere maggiore di 0' });
+    }
+
     //creo una data in una costante now
     const now = new Date();
 
@@ -75,8 +86,6 @@ const storeReview = (req, res) => {
 
     //uso la connection e 
     connection.query(newReviewSql, [movie_id, name, vote, text, updated_at], (err, results) => {
-
-        if (name.length < 2 || text.length < 3 || vote === 0) return res.status(500).json({ error: 'Compila tutti i campi!!' })
 
         //restituisco un errore 500 nel caso di insuccesso
         if (err) return res.status(500).json({ error: err });
