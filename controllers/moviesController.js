@@ -38,7 +38,7 @@ const show = (req, res) => {
         if (results.length === 0) return res.status(404).json({ error: 'Movie not found!' });
 
         //creo una query per trovare le recensioni
-        const reviewSql = 'SELECT * FROM reviews WHERE movie_id = ?';
+        const reviewSql = 'SELECT * FROM reviews WHERE movie_id = ? ORDER BY id DESC';
 
         //connetto la query delle review
         connection.query(reviewSql, [id], (err, reviewsResults) => {
@@ -68,7 +68,7 @@ const storeReview = (req, res) => {
     const now = new Date();
 
     //creo una costante updated_at per accedere all'anno, al mese e al giorno
-    const updated_at = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()}`;
+    const updated_at = `${now.getFullYear()}-${(now.getMonth() + 1)}-${now.getDate()}`;
 
     //creo una costante per la query
     const newReviewSql = 'INSERT INTO reviews SET movie_id = ?, name = ?, vote = ?, text = ?, updated_at = ?'
