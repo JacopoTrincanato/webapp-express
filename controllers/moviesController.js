@@ -76,6 +76,8 @@ const storeReview = (req, res) => {
     //uso la connection e 
     connection.query(newReviewSql, [movie_id, name, vote, text, updated_at], (err, results) => {
 
+        if (name.length < 2 || text.length < 3 || vote === 0) return res.status(500).json({ error: 'Compila tutti i campi!!' })
+
         //restituisco un errore 500 nel caso di insuccesso
         if (err) return res.status(500).json({ error: err });
 
