@@ -27,7 +27,7 @@ const show = (req, res) => {
     const sql = 'SELECT * FROM movies WHERE id = ?';
 
     //creo una costante dove salvare l'id
-    const id = req.params.id;
+    const id = Number(req.params.id);
 
     //connetto la query dei film
     connection.query(sql, [id], (err, results) => {
@@ -59,7 +59,7 @@ const show = (req, res) => {
 const storeReview = (req, res) => {
 
     //recupero l'id e lo salvo in una costante movie_id
-    const movie_id = req.params.id;
+    const movie_id = Number(req.params.id);
 
     //recupero le chiavi che mi servono dal body
     const { name, vote, text } = req.body;
